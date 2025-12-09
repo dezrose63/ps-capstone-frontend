@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 function Navbar() {
     return (
-        <nav className="text-white flex justify-between items-center w-full h-10 bg-red-500">
+        <nav className="mx-auto max-w-3xl text-white p-6 flex justify-between">
          
             <NavLink to="/">Home</NavLink>
             <NavLink to="/projects">Projects</NavLink>
