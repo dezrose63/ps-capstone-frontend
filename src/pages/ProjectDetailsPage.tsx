@@ -17,7 +17,8 @@ function ProjectDetailsPage() {
         const res = await apiClient.get(`/api/projects/${projectId}`);
         console.log(res.data);
         setProject(res.data);
-      } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
         console.log(error);
         setError(error.message);
       } finally {

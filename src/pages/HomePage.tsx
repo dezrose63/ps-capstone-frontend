@@ -2,11 +2,11 @@
 
 
 function HomePage() {
-    return (
-        <div>
-            <h2 className="text-2xl font-bold text-white">Home Page</h2>
-            <p className="text-white">Welcome to the Project Manager application!</p>
-        </div>
-    );
+  return (
+    <div>
+      <h1 className="text-4xl font-bold text-white">Project Manager App</h1>
+    </div>
+  );
 }
-export default HomePage; 
+
+export default HomePage;
