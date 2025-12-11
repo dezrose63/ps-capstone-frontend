@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import type { User } from "../types";
 import { apiClient } from "../clients/api";
 
@@ -10,6 +10,7 @@ interface AuthContextType {
   logOut: () => void;
   token: string | null;
   setToken: (token: string) => void;
+  loading: boolean;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -43,52 +44,61 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     }
   });
 
-  // useEffect(() => {
-  //   try {
+  // For signin loading effect
+  const [loading, setLoading] = useState(true);
 
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        // Verify token with backend if needed
+        const token = localStorage.getItem("token");
+        if (token) {
+          // await apiClient.get('/api/verify-token');
+        }
+      } catch (error) {
+        console.error(error);
+        localStorage.clear();
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
 
   const logIn = async (email: string, password: string) => {
     try {
-      const res = await apiClient.post("/api/users/login", { email, password });
+      const res = await apiClient.post('/api/users/login', {email, password});
       console.log(res.data);
       // set data in state
       setToken(res.data.token);
       setUser(res.data.user);
 
       // set data in local storage
-      localStorage.setItem("token", JSON.stringify(res.data.token));
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem('token', JSON.stringify(res.data.token));
+      localStorage.setItem('user', JSON.stringify(res.data.user));
     } catch (error) {
       console.error(error);
     }
   };
 
-  const register = async (
-    username: string,
-    email: string,
-    password: string
-  ) => {
+  const register = async (username: string, email: string, password: string) => {
     try {
-      const res = await apiClient.post("/api/users/register", {
-        username,
-        email,
-        password,
-      });
+      const res = await apiClient.post('/api/users/register', {username, email, password});
       console.log(res.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const logOut = () => {};
+  const logOut = () => {
+    setUser(null);
+    setToken(null);
+  };
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, logIn, register, logOut, token, setToken }}
+      value={{ user, setUser, logIn, register, logOut, token, setToken, loading}}
     >
       {children}
     </AuthContext.Provider>

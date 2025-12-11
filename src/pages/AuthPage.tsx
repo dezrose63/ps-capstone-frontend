@@ -10,9 +10,7 @@ function AuthPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // AuthContext
   const { logIn, register } = useContext(AuthContext)!;
-
   const navigate = useNavigate();
 
   const handleLogin = async (e: FormEvent) => {
@@ -21,11 +19,8 @@ function AuthPage() {
       setError("");
       setLoading(true);
       if (!email || !password) return;
-
-      // API call here
-      logIn(email, password);
-      navigate('/projects');
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await logIn(email, password);
+      navigate("/projects");
     } catch (error: any) {
       console.error(error.message);
       setError(error.message);
@@ -40,11 +35,8 @@ function AuthPage() {
       setError("");
       setLoading(true);
       if (!username || !email || !password) return;
-
-      // API call here
-      register(username, email, password);
+      await register(username, email, password);
       setShowRegister(false);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error(error.message);
       setError(error.message);
@@ -54,126 +46,151 @@ function AuthPage() {
   };
 
   return (
-    <div className="text-white flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold mt-10 text-center">
-        Start managing your projects.
+    <div className="text-white flex flex-col items-center justify-center min-h-[80vh]">
+      <h1 className="text-4xl font-bold mb-2 text-center">
+        {showRegister ? "Create an Account" : "Welcome Back"}
       </h1>
+      <p className="text-gray-400 mb-8">
+        {showRegister
+          ? "Start managing your projects today"
+          : "Sign in to continue"}
+      </p>
 
-      {/* ERROR  */}
-      {error && <div>{error}</div>}
+      {error && (
+        <div className="bg-red-500/20 border border-red-500 text-red-300 px-4 py-2 rounded-md mb-4">
+          {error}
+        </div>
+      )}
 
-      {/* FORM  */}
       {showRegister ? (
         <form
           onSubmit={handleRegister}
-          className="border mt-10 p-2 h-60 w-150 flex flex-col justify-around items-center rounded"
+          className="bg-zinc-800 p-8 rounded-xl shadow-xl w-full max-w-md flex flex-col gap-5"
         >
-          <div className="text-xl font-bold">Register</div>
+          <h2 className="text-2xl font-bold text-center text-sky-400">
+            Register
+          </h2>
 
-          <label htmlFor="username">
-            Username:
+          <div className="flex flex-col gap-2">
+            <label htmlFor="username" className="text-sm text-gray-400">
+              Username
+            </label>
             <input
               type="text"
               name="username"
-              id=""
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="ml-2 border rounded"
+              className="bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-3 focus:outline-none focus:border-sky-500 transition-colors"
+              placeholder="Enter your username"
             />
-          </label>
-          <label htmlFor="email">
-            Email:
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="email" className="text-sm text-gray-400">
+              Email
+            </label>
             <input
-              type="text"
+              type="email"
               name="email"
-              id=""
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="ml-10 border rounded"
+              className="bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-3 focus:outline-none focus:border-sky-500 transition-colors"
+              placeholder="Enter your email"
             />
-          </label>
-          <label htmlFor="password">
-            Password:
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="password" className="text-sm text-gray-400">
+              Password
+            </label>
             <input
               type="password"
               name="password"
-              id=""
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="ml-3 border rounded"
+              className="bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-3 focus:outline-none focus:border-sky-500 transition-colors"
+              placeholder="Enter your password"
             />
-          </label>
+          </div>
 
-          <input
+          <button
             type="submit"
-            value="Register"
-            className="border py-2 px-4 rounded"
-          />
-
-          {/* LOADING  */}
-          {loading && <div className="animate-pulse">...</div>}
+            disabled={loading}
+            className="bg-sky-500 hover:bg-sky-600 disabled:bg-sky-500/50 text-white font-semibold py-3 px-4 rounded-lg transition-colors mt-2 cursor-pointer"
+          >
+            {loading ? "Creating account..." : "Register"}
+          </button>
         </form>
       ) : (
         <form
           onSubmit={handleLogin}
-          className="border mt-10 p-2 h-60 w-150 flex flex-col justify-around items-center rounded"
+          className="bg-zinc-800 p-8 rounded-xl shadow-xl w-full max-w-md flex flex-col gap-5"
         >
-          <div className="text-xl font-bold">Login</div>
-          <label htmlFor="email">
-            Email:
+          <h2 className="text-2xl font-bold text-center text-sky-400">
+            Sign In
+          </h2>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="email" className="text-sm text-gray-400">
+              Email
+            </label>
             <input
-              type="text"
+              type="email"
               name="email"
-              id=""
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="ml-10 border rounded"
+              className="bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-3 focus:outline-none focus:border-sky-500 transition-colors"
+              placeholder="Enter your email"
             />
-          </label>
-          <label htmlFor="password">
-            Password:
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="password" className="text-sm text-gray-400">
+              Password
+            </label>
             <input
               type="password"
               name="password"
-              id=""
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="ml-3 border rounded"
+              className="bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-3 focus:outline-none focus:border-sky-500 transition-colors"
+              placeholder="Enter your password"
             />
-          </label>
-          <input
-            type="submit"
-            value="Register"
-            className="border py-2 px-4 rounded"
-          />
+          </div>
 
-          {/* LOADING  */}
-          {loading && <div className="animate-pulse">...</div>}
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-sky-500 hover:bg-sky-600 disabled:bg-sky-500/50 text-white font-semibold py-3 px-4 rounded-lg transition-colors mt-2 cursor-pointer"
+          >
+            {loading ? "Signing in..." : "Sign In"}
+          </button>
         </form>
       )}
 
-      {/* TOGGLE FORM  */}
-      {showRegister ? (
-        <div>
-          Already have an account?{" "}
-          <span
-            className="text-blue-500 hover:cursor-pointer"
-            onClick={() => setShowRegister(false)}
-          >
-            Sign in
-          </span>{" "}
-        </div>
-      ) : (
-        <div>
-          Don't have an account?{" "}
-          <span
-            className="text-blue-500 hover:cursor-pointer"
-            onClick={() => setShowRegister(true)}
-          >
-            Sign up
-          </span>{" "}
-        </div>
-      )}
+      <div className="mt-6 text-gray-400">
+        {showRegister ? (
+          <p>
+            Already have an account?{" "}
+            <span
+              className="text-sky-400 hover:text-sky-300 cursor-pointer font-medium"
+              onClick={() => setShowRegister(false)}
+            >
+              Sign in
+            </span>
+          </p>
+        ) : (
+          <p>
+            Don't have an account?{" "}
+            <span
+              className="text-sky-400 hover:text-sky-300 cursor-pointer font-medium"
+              onClick={() => setShowRegister(true)}
+            >
+              Sign up
+            </span>
+          </p>
+        )}
+      </div>
     </div>
   );
 }

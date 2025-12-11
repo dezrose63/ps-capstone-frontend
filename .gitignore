@@ -27,5 +27,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-project-frontend/src/types/index.ts
 index.ts
