@@ -27,4 +27,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-index.ts
