@@ -67,38 +67,49 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   const logIn = async (email: string, password: string) => {
-    try {
-      const res = await apiClient.post('/api/users/login', {email, password});
-      console.log(res.data);
-      // set data in state
-      setToken(res.data.token);
-      setUser(res.data.user);
+    const res = await apiClient.post("/api/users/login", { email, password });
+    console.log(res.data);
+    // set data in state
+    setToken(res.data.token);
+    setUser(res.data.user);
 
-      // set data in local storage
-      localStorage.setItem('token', JSON.stringify(res.data.token));
-      localStorage.setItem('user', JSON.stringify(res.data.user));
-    } catch (error) {
-      console.error(error);
-    }
+    // set data in local storage
+    localStorage.setItem("token", JSON.stringify(res.data.token));
+    localStorage.setItem("user", JSON.stringify(res.data.user));
   };
 
-  const register = async (username: string, email: string, password: string) => {
-    try {
-      const res = await apiClient.post('/api/users/register', {username, email, password});
-      console.log(res.data);
-    } catch (error) {
-      console.error(error);
-    }
+  const register = async (
+    username: string,
+    email: string,
+    password: string
+  ) => {
+    const res = await apiClient.post("/api/users/register", {
+      username,
+      email,
+      password,
+    });
+    console.log(res.data);
   };
 
   const logOut = () => {
     setUser(null);
     setToken(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, logIn, register, logOut, token, setToken, loading}}
+      value={{
+        user,
+        setUser,
+        logIn,
+        register,
+        logOut,
+        token,
+        setToken,
+        loading,
+      }}
     >
       {children}
     </AuthContext.Provider>

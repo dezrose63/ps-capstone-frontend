@@ -42,7 +42,7 @@ A React frontend for managing projects and tasks, built with Vite and TypeScript
 
 | Variable           | Description            | Example                                                                     |
 | ------------------ | ---------------------- | --------------------------------------------------------------------------- |
-| `VITE_BACKEND_URL` | URL of the backend API | `http://localhost:4000` (dev) or `https://your-backend.onrender.com` (prod) |
+| `VITE_BACKEND_URL` | URL of the backend API | `http://localhost:4000` (dev) or `https://my-backend.onrender.com` (prod) |
 
 ## Available Scripts
 
@@ -60,7 +60,7 @@ A React frontend for managing projects and tasks, built with Vite and TypeScript
    - **Publish directory:** `dist`
 4. Add environment variable in Netlify dashboard:
    - Key: `VITE_BACKEND_URL`
-   - Value: Your deployed backend URL (e.g., `https://your-backend.onrender.com`)
+   - Value: Your deployed backend URL (e.g., `https://my-backend.onrender.com`)
 5. The `_redirects` file in `public/` ensures React Router works correctly on Netlify.
 
 ---

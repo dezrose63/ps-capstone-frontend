@@ -182,7 +182,7 @@ function ProjectDetailsPage() {
                           ? "bg-green-500/20 text-green-400"
                           : task.status === "in-progress"
                           ? "bg-yellow-500/20 text-yellow-400"
-                          : "bg-gray-500/20 text-gray-400"
+                          : "bg-red-500/20 text-red-400"
                       }`}
                     >
                       {task.status === "todo"
