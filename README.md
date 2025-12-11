@@ -1,3 +1,27 @@
+<img width="250" height="50" alt="image" src="https://github.com/user-attachments/assets/38f3794e-58c4-4b3d-a31e-4ef089121296" />
+
+#  Per Scholas Software Engineer Bootcamp Project: FrontEnd Capstone
+
+## Do you want to get ***free*** tech training from Per Scholas?
+
+## [Click Here to find out how!](https://perscholas.referralrock.com/l/7MIDHLPB/) 
+
+*************************************************************************************************************
+
+🎉 A **massive thank you** to **Abe** — hands-down one of the best tech teachers ever! 👨‍🏫✨
+
+Your patience, clarity, and genuine care make such a huge difference. You always take the time to make sure *everyone* understands the material — whether that means:
+- Breaking things down in small groups 🧑‍🤝‍🧑
+- Repeating concepts without ever getting frustrated 😅
+- Or dropping the perfect funny GIF to bring the focus back when we zone out 😂
+
+You don’t just teach code — you teach with empathy, humor, and dedication. Thank you for being an incredible teacher and mentor to the entire class. This project (and our growth as developers) wouldn’t be the same without you! 💻❤️
+
+******************************************************************************************************************
+
+<img width="1373" height="704" alt="screenshot-of-site-homepage" src="https://github.com/user-attachments/assets/9d0459a6-d631-4ac9-8ced-91f5272696c0" />
+
+
 # Project Management Frontend
 
 A React frontend for managing projects and tasks, built with Vite and TypeScript.
