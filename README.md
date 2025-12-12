@@ -1,3 +1,6 @@
+
+
+
 # Project Management Frontend
 
 A React frontend for managing projects and tasks, built with Vite and TypeScript.
@@ -123,6 +126,7 @@ src/
 ├── context/
 │   └── AuthProvider.tsx    # Authentication context (user, token, login/logout)
 ├── pages/
+|   ├── HomePage.tsx        # HomePage with Navbar
 │   ├── AuthPage.tsx        # Login/Register UI
 │   ├── ProjectsPage.tsx    # Projects list and creation
 │   └── ProjectDetailsPage.tsx  # Project details and tasks
