@@ -22,9 +22,6 @@ You don’t just teach code — you teach with empathy, humor, and dedication. T
 <img width="1373" height="704" alt="screenshot-of-site-homepage" src="https://github.com/user-attachments/assets/9d0459a6-d631-4ac9-8ced-91f5272696c0" />
 
 
-
-
-
 # Project Management Frontend
 
 A React frontend for managing projects and tasks, built with Vite and TypeScript.
@@ -33,7 +30,7 @@ A React frontend for managing projects and tasks, built with Vite and TypeScript
 
 - **React 19** - UI library
 - **TypeScript** - Type safety
-- **Vite** - Build tool (created with `npm create vite@latest`)
+- **Vite** - Build tool (created with `npm create vrtw@latest`)
 - **React Router DOM** - Client-side routing
 - **Axios** - HTTP client for API requests
 - **Tailwind CSS 4** - Utility-first CSS framework
@@ -69,7 +66,7 @@ A React frontend for managing projects and tasks, built with Vite and TypeScript
 
 | Variable           | Description            | Example                                                                     |
 | ------------------ | ---------------------- | --------------------------------------------------------------------------- |
-| `VITE_BACKEND_URL` | URL of the backend API | `http://localhost:4000` (dev) or `https://my-backend.onrender.com` (prod) |
+| `VITE_BACKEND_URL` | URL of the backend API | `http://localhost:4000` (dev) or `https://ps-capstone-backend.onrender.com` (prod) |
 
 ## Available Scripts
 
@@ -87,7 +84,7 @@ A React frontend for managing projects and tasks, built with Vite and TypeScript
    - **Publish directory:** `dist`
 4. Add environment variable in Netlify dashboard:
    - Key: `VITE_BACKEND_URL`
-   - Value: Your deployed backend URL (e.g., `https://my-backend.onrender.com`)
+   - Value: my deployed backend URL (e.g., `https://[my-backend.](https://ps-capstone-backend.onrender.com/)`)
 5. The `_redirects` file in `public/` ensures React Router works correctly on Netlify.
 
 ---
@@ -188,6 +185,8 @@ The backend API is a separate Node.js/Express application. See the backend READM
 - bcrypt for password hashing
   import reactDom from 'eslint-plugin-react-dom'
 
+
+```bash
 export default defineConfig([
 globalIgnores(['dist']),
 {
@@ -210,5 +209,9 @@ tsconfigRootDir: import.meta.dirname,
 ])
 
 ```
+## How This Project Was Created (Reference Only)
 
+This project was scaffolded using:
+```bash
+npm create vite@latest project-frontend -- --template react-ts
 ```

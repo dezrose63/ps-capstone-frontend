@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@netlify/vite-plugin": "^2.7.16",
     "axios": "^1.13.2",
     "dotenv": "^17.2.3",
     "react": "^19.2.1",
